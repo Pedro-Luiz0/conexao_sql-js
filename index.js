@@ -6,7 +6,7 @@ import { buscarMedico } from './DAO/medico/buscar_medico.js'
 import { buscarConsulta } from './DAO/consulta/buscar_consulta.js'
 
 const app = express()
-app.use(express.json())
+app.use(express.json()) // HABILITAR O RECEBIMENTO DE JSON
 
 app.get('/ola', (req, res) => {
     res.json({ mensagem: 'Ola MUNDOO!' })
@@ -17,6 +17,7 @@ app.get('/paciente' , async (req, res) => {
     //let pacientes = await resp.json()-
     res.json(pacientes)
 })
+
 
 app.get('/especialidade' , async (req, res) => {
     let especialidades = await buscarEspecialidade()
