@@ -1,19 +1,37 @@
-import {conexao} from '../conexao.js'
+import { conexao } from '../conexao.js'
 
-async function incluirPaciente(infos){
-    const data = [infos]
-    const sql = `INSERT INTO tbl_cliente (codigo, nome, telefone, limite, id_endereco, id_status) VALUES ?`
+async function incluirPaciente(infos) {
+
+    const data = [[
+        infos.nome,
+        infos.endereco,
+        infos.telefone,
+        infos.doencasPrevias,
+        infos.remedioDeUsoContinuo
+    ]]
+
+    const sql = `
+        INSERT INTO tbl_paciente
+        (nome, endereco, telefone, doencasPrevias, remedioDeUsoContinuo)
+        VALUES ?
+    `
+
     const conn = await conexao()
-    
+
     try {
-        // Executar a consulta
-        const [results] = await conn.query(sql,[data]);
+
+        const [results] = await conn.query(sql, [data])
 
         await conn.end()
+
         return results
-      } catch (err) {
+
+    } catch (err) {
+
+        await conn.end()
+
         return err.message
-      }
+    }
 }
 
-export {incluirPaciente}
+export { incluirPaciente }

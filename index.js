@@ -4,6 +4,9 @@ import { buscarEspecialidade } from './DAO/especialidade/buscar_especialidade.js
 import { buscarAgendamento } from './DAO/agendamento/buscar_agendamento.js'
 import { buscarMedico } from './DAO/medico/buscar_medico.js'
 import { buscarConsulta } from './DAO/consulta/buscar_consulta.js'
+import { incluirPaciente } from './DAO/paciente/inserir_Paciente.js'
+
+
 
 const app = express()
 app.use(express.json()) // HABILITAR O RECEBIMENTO DE JSON
@@ -16,6 +19,15 @@ app.get('/paciente' , async (req, res) => {
     let pacientes = await buscarPacientes()
     //let pacientes = await resp.json()-
     res.json(pacientes)
+})
+
+
+app.post('/inserirPaciente', async (req, res) => {
+    let {nome, endereco, telefone, doencasPrevias, remedioDeUsoContinuo} = req.body 
+    let infos = {nome, endereco, telefone, doencasPrevias, remedioDeUsoContinuo}   
+    
+    let resp = await incluirPaciente(infos)
+    res.send(resp)
 })
 
 
