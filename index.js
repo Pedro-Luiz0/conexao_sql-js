@@ -13,10 +13,10 @@ import { buscarConsulta } from './DAO/consulta/buscar_consulta.js'
 // INSERIR DADOS
 
 import { incluirPaciente } from './DAO/paciente/inserir_Paciente.js'
-import { incluirEspecialidade } from './DAO/especialidade/inserir_Especialidade.js'
-import { incluirAgendamento } from './DAO/agendamento/inserir_Agendamento.js'
-import { incluirMedico } from './DAO/medico/inserir_Medico.js'
-import { incluirConsulta } from './DAO/consulta/inserir_Consulta.js'
+import { incluirEspecialidade } from './DAO/especialidade/inserir_especialidade.js'
+import { incluirAgendamento } from './DAO/agendamento/inserir_agendamento.js'
+import { incluirMedico } from './DAO/medico/inserir_medico.js'
+import { incluirConsulta } from './DAO/consulta/inserir_consulta.js'
 
 
 const app = express()
