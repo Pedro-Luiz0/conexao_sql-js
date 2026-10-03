@@ -1,0 +1,34 @@
+import { conexao } from '../conexao.js'
+
+async function incluirEspecialidade(infos) {
+
+    const data = [[
+        infos.nome,
+        infos.publicoAlvo
+    ]]
+
+    const sql = `
+        INSERT INTO tbl_especialidade
+        (nome, publicoAlvo)
+        VALUES ?
+    `
+
+    const conn = await conexao()
+
+    try {
+
+        const [results] = await conn.query(sql, [data])
+
+        await conn.end()
+
+        return results
+
+    } catch (err) {
+
+        await conn.end()
+
+        return err.message
+    }
+}
+
+export { incluirEspecialidade }
